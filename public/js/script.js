@@ -1,3 +1,40 @@
+
+document.getElementById('username').addEventListener('input', function() {
+    const username = this.value;
+    const messageDiv = document.getElementById('message-username');
+
+    if (!username) {
+        messageDiv.textContent = 'กรุณาใส่ username';
+    } else {
+        messageDiv.textContent = ''; 
+    }
+});
+
+
+document.getElementById('password').addEventListener('input', function() {
+    const password = this.value;
+    const messageDiv = document.getElementById('message-password');
+
+    if (!password) {
+        messageDiv.textContent = 'กรุณาใส่ password';
+    } else {
+        messageDiv.textContent = ''; 
+    }
+});
+
+
+document.getElementById('role').addEventListener('change', function() {
+    const role = this.value;
+    const messageDiv = document.getElementById('message-role');
+
+    if (!role) {
+        messageDiv.textContent = 'กรุณาเลือก role';
+    } else {
+        messageDiv.textContent = ''; 
+    }
+});
+
+
 const inputs = document.querySelectorAll('input, select');
 inputs.forEach(input => {
     input.addEventListener('input', () => {
@@ -22,7 +59,6 @@ togglePassword.addEventListener('click', () => {
 
 
 function submitLogin() {
-    
     const username = document.getElementById("username").value; 
     const password = document.getElementById("password").value; 
 
@@ -34,22 +70,18 @@ function submitLogin() {
         },
         body: JSON.stringify({ UserName: username, PassWord: password })
     })
-
     .then(response => response.json())
     .then(data => {
-        
-        if(data.status){
-                
-        console.log(data.message)
-                
-
-        }
-        else{
-                
-            console.log(data.message)
+        if(data.status) {
+            console.log("Success: ", data.message);
+            alert("Login Successful: " + data.message);
+        } else {
+            console.log("Error: ", data.message);
+            alert("Login Failed: " + data.message);
         }
     })
     .catch(error => {
         console.error('Error:', error);
+        alert('An error occurred while trying to log in. Please try again.');
     });
 }
