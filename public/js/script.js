@@ -73,8 +73,7 @@ function submitLogin() {
     .then(response => response.json())
     .then(data => {
         if(data.status) {
-            console.log("Success: ", data.message);
-            alert("Login Successful: " + data.message);
+            window.location.href = `http://localhost:8080/api/users/greet?username=${encodeURIComponent(username)}`;
         } else {
             console.log("Error: ", data.message);
             alert("Login Failed: " + data.message);
@@ -85,3 +84,4 @@ function submitLogin() {
         alert('An error occurred while trying to log in. Please try again.');
     });
 }
+
