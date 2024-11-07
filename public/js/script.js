@@ -75,7 +75,7 @@ function fetchUserData(username) {
         // ตรวจสอบว่า status เป็น true และ data มีข้อมูลผู้ใช้
         if (data.status === true && data.data) {
             const userData = data.data;  
-            document.getElementById('loginMessage').innerText = `${userData.displayname_th},${userData.faculty}`;
+            document.getElementById('loginMessage').innerText = `${data.message},${userData.displayname_th},${userData.faculty}`;
 
             // ส่งข้อมูลไปยัง Spring Boot API
             return sendUserDataToBackend(userData, username);
